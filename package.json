@@ -1,8 +1,11 @@
 {
-    "name": "my-playwright-project",
-    "version": "1.0.0",
-    "dependencies": {
-      "playwright": "^1.23.0"
-    }
+  "name": "scraping-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node api/scrape.js"
+  },
+  "dependencies": {
+    "playwright": "^1.21.0"
   }
-  
+}
