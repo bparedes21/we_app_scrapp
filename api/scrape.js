@@ -15,6 +15,8 @@ module.exports = async (req, res) => {
     
     // Extraemos el valor de compra y venta
     const compra = await page.locator('.variation-max-min__value.data-valor.data-compra').textContent();
+    
+    page.waitForSelector('.variation-max-min__value.data-valor.data-venta');
     const venta = await page.locator('.variation-max-min__value.data-valor.data-venta').textContent();
     
     // Cerramos el navegador
