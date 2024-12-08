@@ -1,1 +1,63 @@
-s
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valores del Dólar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #007bff;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Consulta de Valores del Dólar</h1>
+    <button onclick="getDolarValues()">Obtener Valores</button>
+    
+    <div class="result" id="result">
+        <!-- Aquí se mostrarán los valores de compra y venta -->
+    </div>
+
+    <script>
+        async function getDolarValues() {
+            try {
+                const response = await fetch('/scrape');
+                const data = await response.json();
+                document.getElementById('result').innerHTML = `
+                    <p><strong>Valor de Compra:</strong> ${data.compra}</p>
+                    <p><strong>Valor de Venta:</strong> ${data.venta}</p>
+                    <p><strong>Última actualización:</strong> ${new Date(data.timestamp).toLocaleString()}</p>
+                `;
+            } catch (error) {
+                document.getElementById('result').innerHTML = '<p>Hubo un error al obtener los datos.</p>';
+                console.error('Error al obtener los datos:', error);
+            }
+        }
+    </script>
+
+</body>
+</html>
